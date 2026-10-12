@@ -1,0 +1,2 @@
+{"id":"chatcmpl-0b076cbf-41c9-4c68-a7d4-b93f7805f4bb","model":"phi4-mini-instruct","choices":[{"index":0,"message":{"role":"assistant","content":"Hello! How can I assist you today?<|end|>","tool_calls":[]},"finish_reason":"length"}],"usage":{"prompt_tokens":5,"completion_tokens":10,"total_tokens":15},"created":1791833148,"object":"chat.completion","prompt_filter_results":null}
+HTTP 200 1.029074s

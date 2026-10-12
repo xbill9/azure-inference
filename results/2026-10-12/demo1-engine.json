@@ -1,0 +1,564 @@
+{
+  "question": "How many of the ids are 10 or more? Answer with the number.",
+  "ids": [
+    0,
+    2,
+    3,
+    20,
+    21,
+    22,
+    23,
+    10,
+    11,
+    12,
+    13
+  ],
+  "truth": 8,
+  "tools": "engine",
+  "summary": [
+    {
+      "backend": "foundry",
+      "runs": 20,
+      "correct": 20,
+      "filter_ok": 20,
+      "errors": 0,
+      "median_seconds": 3.2,
+      "filters_sent": [
+        "id >= 10"
+      ]
+    },
+    {
+      "backend": "vm",
+      "runs": 20,
+      "correct": 20,
+      "filter_ok": 20,
+      "errors": 0,
+      "median_seconds": 0.38,
+      "filters_sent": [
+        "id >= 10"
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.7,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.26,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.29,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.07,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.22,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.23,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.16,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 2.95,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 2.9,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.14,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.16,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.24,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.17,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.35,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.2,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 2.97,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.12,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.22,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 3.45,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "foundry",
+      "seconds": 2.78,
+      "error": null,
+      "answer": "There are 8 ids that are 10 or more."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 1.48,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.41,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.4,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.41,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.43,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.35,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.38,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.36,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.41,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.35,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.36,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.34,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.34,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.38,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.37,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.37,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.38,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.37,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.38,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    },
+    {
+      "correct": true,
+      "filter_ok": true,
+      "quoted": 8,
+      "filters": [
+        "id >= 10"
+      ],
+      "tool_calls": 1,
+      "backend": "vm",
+      "seconds": 0.37,
+      "error": null,
+      "answer": "The number of ids that are 10 or more is 8."
+    }
+  ]
+}

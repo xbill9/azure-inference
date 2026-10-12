@@ -1,0 +1,48 @@
+Question: How many of the ids are 10 or more? Answer with the number.
+Ids: [0, 2, 3, 20, 21, 22, 23, 10, 11, 12, 13]
+True answer: 8  tools: engine
+
+  foundry    run 1/20  ok   quoted=8  filters=['id >= 10']  3.7s
+  foundry    run 2/20  ok   quoted=8  filters=['id >= 10']  3.26s
+  foundry    run 3/20  ok   quoted=8  filters=['id >= 10']  3.29s
+  foundry    run 4/20  ok   quoted=8  filters=['id >= 10']  3.07s
+  foundry    run 5/20  ok   quoted=8  filters=['id >= 10']  3.22s
+  foundry    run 6/20  ok   quoted=8  filters=['id >= 10']  3.23s
+  foundry    run 7/20  ok   quoted=8  filters=['id >= 10']  3.16s
+  foundry    run 8/20  ok   quoted=8  filters=['id >= 10']  2.95s
+  foundry    run 9/20  ok   quoted=8  filters=['id >= 10']  2.9s
+  foundry    run 10/20  ok   quoted=8  filters=['id >= 10']  3.14s
+  foundry    run 11/20  ok   quoted=8  filters=['id >= 10']  3.16s
+  foundry    run 12/20  ok   quoted=8  filters=['id >= 10']  3.24s
+  foundry    run 13/20  ok   quoted=8  filters=['id >= 10']  3.17s
+  foundry    run 14/20  ok   quoted=8  filters=['id >= 10']  3.35s
+  foundry    run 15/20  ok   quoted=8  filters=['id >= 10']  3.2s
+  foundry    run 16/20  ok   quoted=8  filters=['id >= 10']  2.97s
+  foundry    run 17/20  ok   quoted=8  filters=['id >= 10']  3.12s
+  foundry    run 18/20  ok   quoted=8  filters=['id >= 10']  3.22s
+  foundry    run 19/20  ok   quoted=8  filters=['id >= 10']  3.45s
+  foundry    run 20/20  ok   quoted=8  filters=['id >= 10']  2.78s
+  vm         run 1/20  ok   quoted=8  filters=['id >= 10']  1.48s
+  vm         run 2/20  ok   quoted=8  filters=['id >= 10']  0.41s
+  vm         run 3/20  ok   quoted=8  filters=['id >= 10']  0.4s
+  vm         run 4/20  ok   quoted=8  filters=['id >= 10']  0.41s
+  vm         run 5/20  ok   quoted=8  filters=['id >= 10']  0.43s
+  vm         run 6/20  ok   quoted=8  filters=['id >= 10']  0.35s
+  vm         run 7/20  ok   quoted=8  filters=['id >= 10']  0.38s
+  vm         run 8/20  ok   quoted=8  filters=['id >= 10']  0.36s
+  vm         run 9/20  ok   quoted=8  filters=['id >= 10']  0.41s
+  vm         run 10/20  ok   quoted=8  filters=['id >= 10']  0.35s
+  vm         run 11/20  ok   quoted=8  filters=['id >= 10']  0.36s
+  vm         run 12/20  ok   quoted=8  filters=['id >= 10']  0.34s
+  vm         run 13/20  ok   quoted=8  filters=['id >= 10']  0.34s
+  vm         run 14/20  ok   quoted=8  filters=['id >= 10']  0.38s
+  vm         run 15/20  ok   quoted=8  filters=['id >= 10']  0.37s
+  vm         run 16/20  ok   quoted=8  filters=['id >= 10']  0.37s
+  vm         run 17/20  ok   quoted=8  filters=['id >= 10']  0.38s
+  vm         run 18/20  ok   quoted=8  filters=['id >= 10']  0.37s
+  vm         run 19/20  ok   quoted=8  filters=['id >= 10']  0.38s
+  vm         run 20/20  ok   quoted=8  filters=['id >= 10']  0.37s
+
+backend     runs  correct  right-filter  errors  median s  filters sent
+foundry       20   20/20          20/20       0       3.2  id >= 10
+vm            20   20/20          20/20       0      0.38  id >= 10
