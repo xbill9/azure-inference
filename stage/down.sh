@@ -27,7 +27,7 @@ if [ "${1:-}" = --all ]; then
 else
   if az vm show -g "$RG" -n cci-demo-vm >/dev/null 2>&1; then
     echo "vm: deleting cci-demo-vm with its disk, NIC and public IP"
-    az vm delete -g "$RG" -n cci-demo-vm --yes --force-deletion none
+    az vm delete -g "$RG" -n cci-demo-vm --yes
     for t in Microsoft.Network/networkInterfaces Microsoft.Network/publicIPAddresses Microsoft.Compute/disks; do
       for id in $(az resource list -g "$RG" --resource-type "$t" --query "[?starts_with(name,'cci-demo-vm')].id" -o tsv); do
         az resource delete --ids "$id" >/dev/null && echo "  deleted ${id##*/}"
