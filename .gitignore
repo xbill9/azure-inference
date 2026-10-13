@@ -7,3 +7,4 @@ stage/.fwd-*.log
 stage/up.log
 stage/.up.t0
 stage/.vllm-key
+stage/down.log

@@ -4,6 +4,7 @@ The question is "how many of these ids are 10 or more?" over eleven ids. Two too
 sets are offered, never both at once:
 
     engine  count_ids(op, value) -> the exact count, min and max, computed here
+    mcp     the same count_ids, served by mcp_server.py over MCP (stdio)
     rows    list_ids()           -> the raw ids; the model has to count them itself
 
 A run is graded on what happened, not on what the model says:
@@ -14,12 +15,15 @@ A run is graded on what happened, not on what the model says:
 
     python3 demo1_counting.py                 # engine tools, 5 runs per backend
     python3 demo1_counting.py --tools rows    # the model counts (diagnostic)
+    python3 demo1_counting.py --tools mcp     # count_ids from the MCP server
     python3 demo1_counting.py --runs 20 --json results/demo1.json
 """
 
 import argparse
+import contextlib
 import json
 import operator
+import os
 import re
 import sys
 import time
@@ -34,6 +38,30 @@ SYSTEM = ("You answer questions about a table of integer ids. Use the tools to l
           "table. End with a sentence that states the number.")
 
 
+def count(op: str, value: int) -> dict:
+    """The engine: exact count, min and max of the ids matching `id <op> value`."""
+    if op not in OPS:
+        return {"error": f"op must be one of {sorted(OPS)}"}
+    hit = [i for i in IDS if OPS[op](i, value)]
+    return {"where": f"id {op} {value}", "count": len(hit),
+            "min": min(hit) if hit else None, "max": max(hit) if hit else None}
+
+
+def mcp_client():
+    """A Strands MCP client for mcp_server.py over stdio, offering count_ids only."""
+    from mcp import StdioServerParameters, stdio_client
+    from strands.tools.mcp import MCPClient
+    server = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mcp_server.py")
+    return MCPClient(lambda: stdio_client(StdioServerParameters(command=sys.executable, args=[server])),
+                     tool_filters={"allowed": ["count_ids"]})
+
+
+def calls_from(messages: list) -> list:
+    """The tool calls an agent made, read back from its conversation."""
+    return [{"tool": c["toolUse"]["name"], **c["toolUse"].get("input", {})}
+            for m in messages if m["role"] == "assistant" for c in m["content"] if "toolUse" in c]
+
+
 def make_tools(kind: str, calls: list):
     from strands import tool
 
@@ -46,11 +74,7 @@ def make_tools(kind: str, calls: list):
             value: the integer to compare each id against
         """
         calls.append({"tool": "count_ids", "op": op, "value": value})
-        if op not in OPS:
-            return {"error": f"op must be one of {sorted(OPS)}"}
-        hit = [i for i in IDS if OPS[op](i, value)]
-        return {"where": f"id {op} {value}", "count": len(hit),
-                "min": min(hit) if hit else None, "max": max(hit) if hit else None}
+        return count(op, value)
 
     @tool
     def list_ids() -> list:
@@ -79,17 +103,21 @@ def grade(answer: str, calls: list, kind: str) -> dict:
             "filters": [f"id {c['op']} {c['value']}" for c in counted], "tool_calls": len(calls)}
 
 
-def run_once(b: backends.Backend, kind: str) -> dict:
+def run_once(b: backends.Backend, kind: str, client=None) -> dict:
+    """One agent run. For kind "mcp", pass a started mcp_client(); the calls are read back
+    from the agent's messages, because the tool runs in the server's process."""
     from strands import Agent
     calls: list = []
-    agent = Agent(model=backends.strands_model(b), system_prompt=SYSTEM,
-                  tools=make_tools(kind, calls), callback_handler=None)
+    tools = client.list_tools_sync() if kind == "mcp" else make_tools(kind, calls)
+    agent = Agent(model=backends.strands_model(b), system_prompt=SYSTEM, tools=tools, callback_handler=None)
     t0 = time.perf_counter()
     try:
         answer = str(agent(QUESTION))
         error = None
     except Exception as exc:  # a backend failure is a result, not a crash
         answer, error = "", f"{type(exc).__name__}: {exc}"[:300]
+    if kind == "mcp":
+        calls = calls_from(agent.messages)
     result = grade(answer, calls, kind)
     result.update(backend=b.name, seconds=round(time.perf_counter() - t0, 2), error=error,
                   answer=answer.strip()[-200:])
@@ -115,23 +143,34 @@ def summarize(rows: list, kind: str) -> list:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tools", choices=["engine", "rows"], default="engine")
+    ap.add_argument("--tools", choices=["engine", "rows", "mcp"], default="engine")
     ap.add_argument("--runs", type=int, default=5)
     ap.add_argument("--json", help="write every run and the summary here")
     a = ap.parse_args()
 
     usable = [b for b in backends.configured() if b.tool_capable]
     print(f"Question: {QUESTION}\nIds: {IDS}\nTrue answer: {len(TRUTH)}  tools: {a.tools}\n")
+    client = mcp_client() if a.tools == "mcp" else contextlib.nullcontext()
+    with client:
+        rows = run_all(usable, a, client)
+    summary = summarize(rows, a.tools)
+    report(summary, rows, a)
+    return 0
+
+
+def run_all(usable: list, a, client) -> list:
     rows = []
     for b in usable:
         for n in range(a.runs):
-            r = run_once(b, a.tools)
+            r = run_once(b, a.tools, client)
             rows.append(r)
             mark = "ERR" if r["error"] else ("ok " if r["correct"] else "BAD")
             print(f"  {b.name:<10} run {n + 1}/{a.runs}  {mark}  quoted={r['quoted']}  "
                   f"filters={r['filters']}  {r['seconds']}s" + (f"  {r['error']}" if r["error"] else ""))
-    summary = summarize(rows, a.tools)
+    return rows
 
+
+def report(summary: list, rows: list, a) -> None:
     print("\nbackend     runs  correct  right-filter  errors  median s  filters sent")
     for s in summary:
         rf = "-" if s["filter_ok"] is None else f"{s['filter_ok']}/{s['runs']}"
@@ -144,7 +183,6 @@ def main() -> int:
         with open(a.json, "w") as f:
             json.dump({"question": QUESTION, "ids": IDS, "truth": len(TRUTH), "tools": a.tools,
                        "summary": summary, "runs": rows}, f, indent=2)
-    return 0
 
 
 if __name__ == "__main__":
